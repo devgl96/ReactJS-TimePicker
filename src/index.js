@@ -13,7 +13,7 @@ import "primereact/resources/primereact.min.css";
 import "primeicons/primeicons.css";
 import moment from "moment";
 import 'moment/min/locales';
- class Calendar extends Component {
+class Calendar extends Component {
   static defaultProps = {
     id: null,
     name: null,
@@ -183,8 +183,8 @@ import 'moment/min/locales';
         this.props.viewDate && this.isValidDate(this.props.viewDate)
           ? this.props.viewDate
           : propValue && this.isValidDate(propValue)
-          ? propValue
-          : new Date();
+            ? propValue
+            : new Date();
       this.state = {
         viewDate,
       };
@@ -238,7 +238,7 @@ import 'moment/min/locales';
           weekHeader: "Wk",
         },
       },
-      () => {}
+      () => { }
     );
   }
 
@@ -270,7 +270,7 @@ import 'moment/min/locales';
           weekHeader: "Wk",
         },
       },
-      () => {}
+      () => { }
     );
   }
 
@@ -301,8 +301,8 @@ import 'moment/min/locales';
           this.props.viewDate && this.isValidDate(this.props.viewDate)
             ? this.props.viewDate
             : propValue && this.isValidDate(propValue)
-            ? propValue
-            : new Date();
+              ? propValue
+              : new Date();
 
         this.setState(
           {
@@ -671,6 +671,7 @@ import 'moment/min/locales';
   onMonthDropdownChange(event) {
     const currentViewDate = this.getViewDate();
     let newViewDate = new Date(currentViewDate.getTime());
+    newViewDate.setDate(1);
     newViewDate.setMonth(parseInt(event.target.value, 10));
 
     this.updateViewDate(event, newViewDate);
@@ -1298,7 +1299,7 @@ import 'moment/min/locales';
   validateMinute(minute, value) {
     let valid = true;
     let valueDateString = value ? value.toDateString() : null;
-    
+
     if (
       this.props.minDate &&
       valueDateString &&
@@ -1315,7 +1316,7 @@ import 'moment/min/locales';
       this.props.maxDate &&
       valueDateString &&
       this.props.maxDate.toDateString() === valueDateString
-      ) {
+    ) {
       if (value.getHours() === this.props.maxDate.getHours()) {
         if (this.props.maxDate.getMinutes() < minute) {
           valid = false;
@@ -1325,7 +1326,7 @@ import 'moment/min/locales';
 
     return valid;
   }
- 
+
   validateSecond(second, value) {
     let valid = true;
     let valueDateString = value ? value.toDateString() : null;
@@ -1404,10 +1405,10 @@ import 'moment/min/locales';
 
   updateTime(event, hour, minute, second, millisecond) {
     let newDateTime =
-    this.props.value && this.props.value instanceof Date
-    ? new Date(this.props.value)
-    : new Date();
-    
+      this.props.value && this.props.value instanceof Date
+        ? new Date(this.props.value)
+        : new Date();
+
     newDateTime.setHours(hour);
     newDateTime.setMinutes(minute);
     newDateTime.setSeconds(second);
@@ -1444,9 +1445,9 @@ import 'moment/min/locales';
       let viewMonthWithMinMax = parseInt(
         (this.isInMinYear(value) &&
           Math.max(this.props.minDate.getMonth(), viewMonth).toString()) ||
-          (this.isInMaxYear(value) &&
-            Math.min(this.props.maxDate.getMonth(), viewMonth).toString()) ||
-          viewMonth
+        (this.isInMaxYear(value) &&
+          Math.min(this.props.maxDate.getMonth(), viewMonth).toString()) ||
+        viewMonth
       );
 
       value.setMonth(viewMonthWithMinMax);
@@ -1819,8 +1820,8 @@ import 'moment/min/locales';
       this.props.onChange({
         originalEvent: event,
         value: value,
-        stopPropagation: () => {},
-        preventDefault: () => {},
+        stopPropagation: () => { },
+        preventDefault: () => { },
         target: {
           name: this.props.name,
           id: this.props.id,
@@ -2468,13 +2469,13 @@ import 'moment/min/locales';
 
     let iFormat;
     const lookAhead = (match) => {
-        const matches =
-          iFormat + 1 < format.length && format.charAt(iFormat + 1) === match;
-        if (matches) {
-          iFormat++;
-        }
-        return matches;
-      },
+      const matches =
+        iFormat + 1 < format.length && format.charAt(iFormat + 1) === match;
+      if (matches) {
+        iFormat++;
+      }
+      return matches;
+    },
       formatNumber = (match, value, len) => {
         let num = "" + value;
         if (lookAhead(match)) {
@@ -2521,7 +2522,7 @@ import 'moment/min/locales';
                     date.getDate()
                   ).getTime() -
                     new Date(date.getFullYear(), 0, 0).getTime()) /
-                    86400000
+                  86400000
                 ),
                 3
               );
@@ -2541,7 +2542,7 @@ import 'moment/min/locales';
               output += lookAhead("y")
                 ? date.getFullYear()
                 : (date.getFullYear() % 100 < 10 ? "0" : "") +
-                  (date.getFullYear() % 100);
+                (date.getFullYear() % 100);
               break;
             case "@":
               output += date.getTime();
@@ -2726,7 +2727,7 @@ import 'moment/min/locales';
         typeof this.props.shortYearCutoff !== "string"
           ? this.props.shortYearCutoff
           : (new Date().getFullYear() % 100) +
-            parseInt(this.props.shortYearCutoff, 10),
+          parseInt(this.props.shortYearCutoff, 10),
       year = -1,
       month = -1,
       day = -1,
@@ -2747,12 +2748,12 @@ import 'moment/min/locales';
             match === "@"
               ? 14
               : match === "!"
-              ? 20
-              : match === "y" && isDoubled
-              ? 4
-              : match === "o"
-              ? 3
-              : 2,
+                ? 20
+                : match === "y" && isDoubled
+                  ? 4
+                  : match === "o"
+                    ? 3
+                    : 2,
           minSize = match === "y" ? size : 1,
           digits = new RegExp("^\\d{" + minSize + "," + size + "}"),
           num = value.substring(iValue).match(digits);
